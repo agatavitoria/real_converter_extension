@@ -1,0 +1,25 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    border: none;
+    font-family: Roboto,HelveticaNeue,Arial,sans-serif;
+}
+
+.dolar__total {
+    width: 400px;
+    background-color: #202124;
+    padding: 20px;
+}
+
+.dolar__info {
+    color: #9aa0a6;
+    font-size: 16px;
+}
+
+.real__info {
+    margin-top: 5px;
+    color: #e8eaed;
+    font-size: 36px;
+}
