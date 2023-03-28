@@ -1,0 +1,13 @@
+{
+    "name": "Dolar Hoje",
+    "description": "Extensão para exibir o valor do dólar hoje",
+    "version": "1.0",
+    "manifest_version": 3,
+    "permissions": [
+        "activeTab",
+        "scripting"
+    ],
+    "action": {
+        "default_popup": "index.html"
+    }
+}
