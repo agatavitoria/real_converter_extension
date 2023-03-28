@@ -13,8 +13,8 @@ const roundValue = (num) => {
 }
 
 const handleValue = () => {
-    spanDolar.innerHTML = totalReal;
-    spanReal.innerHTML = toReal.format(totalDolar);
+    spanDolar.innerHTML = toReal.format(totalDolar);
+    spanReal.innerHTML = totalReal;
 }
 
 const fetchApi = async () => {
@@ -22,8 +22,8 @@ const fetchApi = async () => {
         const response = await fetch('https://economia.awesomeapi.com.br/last/USD-BRL')
         const { USDBRL } = await response.json();   
 
-        totalReal = 1;
-        totalDolar = roundValue(USDBRL.bid);
+        totalDolar = 1;
+        totalReal = roundValue(USDBRL.bid);
 
         handleValue();
     } catch (err) {
