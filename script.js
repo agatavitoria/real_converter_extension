@@ -1,20 +1,27 @@
 const spanDolar = document.querySelector('.dolar__value');
 const spanReal = document.querySelector('.real__value');
+const inputReal = document.querySelector('.real__input');
+const inputDolar = document.querySelector('.dolar__input');
 
-const toReal = new Intl.NumberFormat('pt-BR', {
+const Currency = new Intl.NumberFormat('pt-BR', {
     currency: 'BRL',
 });
 
-let totalDolar = '';
 let totalReal = '';
+let totalDolar = '';
 
 const roundValue = (num) => {
     return Math.round(num * 100) / 100
 }
 
 const handleValue = () => {
-    spanDolar.innerHTML = toReal.format(totalDolar);
-    spanReal.innerHTML = totalReal;
+    const realFormatted = Currency.format(roundValue(totalReal));
+
+    spanDolar.innerHTML = totalDolar;
+    spanReal.innerHTML = realFormatted;
+
+    inputReal.value = totalDolar;
+    inputDolar.value = realFormatted;
 }
 
 const fetchApi = async () => {
@@ -23,7 +30,7 @@ const fetchApi = async () => {
         const { USDBRL } = await response.json();   
 
         totalDolar = 1;
-        totalReal = roundValue(USDBRL.bid);
+        totalReal = USDBRL.bid;
 
         handleValue();
     } catch (err) {
@@ -31,4 +38,15 @@ const fetchApi = async () => {
     }
 }
 
+const handleInputValue = ({ target }) => {
+    const total = Number(target.value);
+    const valueInReal = total * totalReal;
+    const valueFormatted = Currency.format(
+        roundValue(valueInReal)
+    );
+
+    inputDolar.value = valueFormatted;
+}
+
+inputReal.addEventListener("input", handleInputValue);
 window.onload = () => fetchApi();
