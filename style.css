@@ -7,7 +7,7 @@
     font-family: Roboto,HelveticaNeue,Arial,sans-serif;
 }
 
-.dolar__total {
+.content {
     width: 400px;
     background-color: #202124;
     padding: 20px;
@@ -22,4 +22,26 @@
     margin-top: 5px;
     color: #e8eaed;
     font-size: 36px;
+}
+
+form {
+    margin-top: 16px;
+}
+
+input {
+    border: 1px solid #5f6368;
+    border-radius: 8px;
+    color: #333;
+    height: 40px;
+    line-height: 24px;
+    width: 100%;
+    outline: none;
+    background-color: #202124;
+    color: #bdc1c6;
+    font-size: 16px;
+    padding: 1px 6px 1px 12px;
+}
+
+input:first-child {
+    margin-bottom: 10px;
 }
