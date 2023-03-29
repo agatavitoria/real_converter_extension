@@ -1,27 +1,28 @@
-const spanDolar = document.querySelector('.dolar__value');
+const spanCurrency = document.querySelector('.currency__value');
 const spanReal = document.querySelector('.real__value');
+
 const inputReal = document.querySelector('.real__input');
-const inputDolar = document.querySelector('.dolar__input');
+const inputCurrency = document.querySelector('.currency__input');
 
 const Currency = new Intl.NumberFormat('pt-BR', {
     currency: 'BRL',
 });
 
-let totalReal = '';
-let totalDolar = '';
+let totalCurrencyToReal = '';
+let totalCurrency = '';
 
 const roundValue = (num) => {
     return Math.round(num * 100) / 100
 }
 
 const handleValue = () => {
-    const realFormatted = Currency.format(roundValue(totalReal));
+    const realFormatted = Currency.format(roundValue(totalCurrencyToReal));
 
-    spanDolar.innerHTML = totalDolar;
+    spanCurrency.innerHTML = totalCurrency;
     spanReal.innerHTML = realFormatted;
 
-    inputReal.value = totalDolar;
-    inputDolar.value = realFormatted;
+    inputReal.value = totalCurrency;
+    inputCurrency.value = realFormatted;
 }
 
 const fetchApi = async () => {
@@ -29,8 +30,8 @@ const fetchApi = async () => {
         const response = await fetch('https://economia.awesomeapi.com.br/last/USD-BRL')
         const { USDBRL } = await response.json();   
 
-        totalDolar = 1;
-        totalReal = USDBRL.bid;
+        totalCurrency = 1;
+        totalCurrencyToReal = USDBRL.bid;
 
         handleValue();
     } catch (err) {
@@ -40,12 +41,12 @@ const fetchApi = async () => {
 
 const handleInputValue = ({ target }) => {
     const total = Number(target.value);
-    const valueInReal = total * totalReal;
+    const valueInReal = total * totalCurrencyToReal;
     const valueFormatted = Currency.format(
         roundValue(valueInReal)
     );
 
-    inputDolar.value = valueFormatted;
+    inputCurrency.value = valueFormatted;
 }
 
 inputReal.addEventListener("input", handleInputValue);
