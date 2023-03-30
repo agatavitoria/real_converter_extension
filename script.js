@@ -27,7 +27,8 @@ const handleValue = () => {
 
 const fetchApi = async () => {
     try {
-        const response = await fetch('https://economia.awesomeapi.com.br/last/USD-BRL')
+        const apiUrl = 'https://economia.awesomeapi.com.br/last/USD-BRL';
+        const response = await fetch(apiUrl);
         const { USDBRL } = await response.json();   
 
         totalCurrency = 1;
